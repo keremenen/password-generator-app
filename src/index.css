@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* BOLD */
+@layer base {
+  @font-face {
+    font-family: 'JetBrains Mono';
+    font-weight: bold;
+    font-weight: 100 900; /* Zakres wag od 100 do 900 */
+    src: url('./assets/fonts/JetBrainsMono-Bold.ttf') format('truetype');
+  }
+}
