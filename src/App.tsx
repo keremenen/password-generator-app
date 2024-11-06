@@ -1,4 +1,5 @@
 import CopyIcon from './assets/icon-copy.svg?react'
+import { Checkbox } from './components/ui/checkbox'
 import { Slider } from './components/ui/slider'
 
 function App() {
@@ -21,14 +22,35 @@ function App() {
             <h3>Character Length</h3>
             <span className='text-heading-l text-neon-green'>0</span>
           </div>
-
           {/* INPUT SLIDER */}
-
-          <Slider defaultValue={[10]} max={20} step={1} className='h-7' />
-
+          <Slider defaultValue={[10]} max={20} step={1} className='mb-8 h-7' />
           {/* OPTIONS */}
-
-          {/* STRENGTH */}
+          <ul className='flex flex-col gap-y-5 text-body'>
+            <li className='flex items-start'>
+              <Checkbox id='uppercaseLetters' />
+              <label htmlFor='uppercaseLetters' className='cursor-pointer pl-6'>
+                Include Uppercase Letters
+              </label>
+            </li>
+            <li className='flex items-start'>
+              <Checkbox id='lowercaseLetters' />
+              <label htmlFor='lowercaseLetters' className='cursor-pointer pl-6'>
+                Include Lowercase Letters
+              </label>
+            </li>
+            <li className='flex items-start'>
+              <Checkbox id='numbers' />
+              <label htmlFor='numbers' className='cursor-pointer pl-6'>
+                Include Numbers
+              </label>
+            </li>
+            <li className='flex items-start'>
+              <Checkbox id='symbols' />
+              <label htmlFor='symbols' className='cursor-pointer pl-6'>
+                Include Symbols
+              </label>
+            </li>
+          </ul>
 
           {/* GENERATE BUTTON */}
         </section>
