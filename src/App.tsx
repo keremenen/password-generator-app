@@ -17,13 +17,15 @@ function App() {
         </section>
 
         <section className='bg-dark-grey px-8 pb-8 pt-6'>
-          <div className='flex items-center justify-between'>
+          <div className='mb-4 flex h-[43px] items-center justify-between'>
             <h3>Character Length</h3>
             <span className='text-heading-l text-neon-green'>0</span>
           </div>
 
           {/* INPUT SLIDER */}
-          <Slider defaultValue={[33]} max={100} step={1} />
+
+          <Slider defaultValue={[10]} max={20} step={1} className='h-7' />
+
           {/* OPTIONS */}
 
           {/* STRENGTH */}
