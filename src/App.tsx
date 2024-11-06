@@ -1,4 +1,5 @@
 import CopyIcon from './assets/icon-copy.svg?react'
+import { Slider } from './components/ui/slider'
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           </div>
 
           {/* INPUT SLIDER */}
-
+          <Slider defaultValue={[33]} max={100} step={1} />
           {/* OPTIONS */}
 
           {/* STRENGTH */}
