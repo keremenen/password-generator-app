@@ -25,7 +25,7 @@ function App() {
           {/* INPUT SLIDER */}
           <Slider defaultValue={[10]} max={20} step={1} className='mb-8 h-7' />
           {/* OPTIONS */}
-          <ul className='flex flex-col gap-y-5 text-body'>
+          <ul className='mb-8 flex flex-col gap-y-5 text-body'>
             <li className='flex items-start'>
               <Checkbox id='uppercaseLetters' />
               <label htmlFor='uppercaseLetters' className='cursor-pointer pl-6'>
@@ -51,6 +51,20 @@ function App() {
               </label>
             </li>
           </ul>
+
+          {/* STRENGTH INDICATOR */}
+
+          <div className='flex items-center justify-between bg-very-dark-grey px-8 py-5'>
+            <p className='text-body text-grey'>STRENGTH</p>
+
+            <div className='flex gap-x-4'>
+              <p>MEDIUM</p>
+
+              <div>
+                <span>s</span>
+              </div>
+            </div>
+          </div>
 
           {/* GENERATE BUTTON */}
         </section>
