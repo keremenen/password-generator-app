@@ -2,7 +2,7 @@ import { usePasswordContext } from '@/lib/utils'
 import { Slider } from './ui/slider'
 
 export default function PasswordLength() {
-  const { passwordLength } = usePasswordContext()
+  const { passwordLength, setPasswordLength } = usePasswordContext()
 
   return (
     <>
@@ -12,7 +12,15 @@ export default function PasswordLength() {
           {passwordLength}
         </span>
       </div>
-      <Slider defaultValue={[10]} max={20} step={1} className='mb-8 h-7' />
+      <Slider
+        defaultValue={[0]}
+        max={20}
+        step={1}
+        className='mb-8 h-7'
+        onValueChange={(value) => {
+          setPasswordLength(value[0])
+        }}
+      />
     </>
   )
 }
