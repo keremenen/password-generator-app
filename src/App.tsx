@@ -54,14 +54,17 @@ function App() {
 
           {/* STRENGTH INDICATOR */}
 
-          <div className='flex items-center justify-between bg-very-dark-grey px-8 py-5'>
+          <div className='flex min-h-[72px] items-center justify-between bg-very-dark-grey px-8 py-5'>
             <p className='text-body text-grey'>STRENGTH</p>
 
-            <div className='flex gap-x-4'>
-              <p>MEDIUM</p>
+            <div className='flex items-center gap-x-4'>
+              <p className='text-heading-m'>MEDIUM</p>
 
-              <div>
-                <span>s</span>
+              <div className='flex gap-x-2'>
+                <span className='block h-7 min-w-[0.625rem] border-2 border-yellow bg-yellow' />
+                <span className='block h-7 min-w-[0.625rem] border-2 border-yellow bg-yellow' />
+                <span className='block h-7 min-w-[0.625rem] border-2 border-yellow bg-yellow' />
+                <span className='block h-7 min-w-[0.625rem] border-2 border-almost-white' />
               </div>
             </div>
           </div>
