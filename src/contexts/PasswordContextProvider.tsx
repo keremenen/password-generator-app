@@ -3,7 +3,7 @@ import { createContext, useMemo, useState } from 'react'
 type PasswordContextType = {
   passwordLength: number
   passwordStrength: {
-    label: 'too weak' | 'weak' | 'medium' | 'strong'
+    label: 'unset' | 'too weak' | 'weak' | 'medium' | 'strong'
     score: number
   }
   setPasswordLength: (length: number) => void
@@ -85,8 +85,16 @@ function calculatePasswordStrength(
   isIncludeLowercase: boolean,
   isIncludeNumbers: boolean,
   isIncludeSymbols: boolean
-): { label: 'too weak' | 'weak' | 'medium' | 'strong'; score: number } {
+): {
+  label: 'unset' | 'too weak' | 'weak' | 'medium' | 'strong'
+  score: number
+} {
   let score = 0
+
+  if (length === 0) {
+    return { label: 'unset', score }
+  }
+
   if (length >= 16) {
     score += 3
   } else if (length >= 11) {
