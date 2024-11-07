@@ -1,14 +1,16 @@
-import { createContext, useState } from 'react'
+import { createContext, useMemo, useState } from 'react'
 
 type PasswordContextType = {
   passwordLength: number
-  passwordStrength: string
+  passwordStrength: {
+    label: 'too weak' | 'weak' | 'medium' | 'strong'
+    score: number
+  }
   setPasswordLength: (length: number) => void
-  setIsIncludeUppercase: (value: boolean) => void
-  setIsIncludeLowercase: (value: boolean) => void
-  setIsIncludeNumbers: (value: boolean) => void
-  setIsIncludeSymbols: (value: boolean) => void
   handleToggleIncludeUppercase: () => void
+  handleToggleIncludeLowercase: () => void
+  handleToggleIncludeNumbers: () => void
+  handleToggleIncludeSymbols: () => void
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -29,19 +31,36 @@ export default function PasswordContextProvider({
   const [isIncludeSymbols, setIsIncludeSymbols] = useState(false)
 
   // PASSWORD STRENGTH
-  const passwordStrength = calculatePasswordStrength(
+  const passwordStrength = useMemo(() => {
+    return calculatePasswordStrength(
+      passwordLength,
+      isIncludeUppercase,
+      isIncludeLowercase,
+      isIncludeNumbers,
+      isIncludeSymbols
+    )
+  }, [
     passwordLength,
     isIncludeUppercase,
     isIncludeLowercase,
     isIncludeNumbers,
-    isIncludeSymbols
-  )
-
-  console.log(isIncludeUppercase)
+    isIncludeSymbols,
+  ])
 
   const handleToggleIncludeUppercase = () => {
     setIsIncludeUppercase((prevState) => !prevState)
   }
+  const handleToggleIncludeLowercase = () => {
+    setIsIncludeLowercase((prevState) => !prevState)
+  }
+  const handleToggleIncludeNumbers = () => {
+    setIsIncludeNumbers((prevState) => !prevState)
+  }
+  const handleToggleIncludeSymbols = () => {
+    setIsIncludeSymbols((prevState) => !prevState)
+  }
+
+  console.log(passwordStrength)
 
   return (
     <PasswordContext.Provider
@@ -49,6 +68,9 @@ export default function PasswordContextProvider({
         passwordLength,
         setPasswordLength,
         handleToggleIncludeUppercase,
+        handleToggleIncludeLowercase,
+        handleToggleIncludeNumbers,
+        handleToggleIncludeSymbols,
         passwordStrength,
       }}
     >
@@ -63,7 +85,7 @@ function calculatePasswordStrength(
   isIncludeLowercase: boolean,
   isIncludeNumbers: boolean,
   isIncludeSymbols: boolean
-): string {
+): { label: 'too weak' | 'weak' | 'medium' | 'strong'; score: number } {
   let score = 0
   if (length >= 16) {
     score += 3
@@ -80,13 +102,13 @@ function calculatePasswordStrength(
   if (isIncludeSymbols) score += 1
 
   // Determine strength
-  if (score <= 2) {
-    return 'Too Weak'
+  if (score == 0) {
+    return { label: 'too weak', score }
   } else if (score <= 4) {
-    return 'Weak'
+    return { label: 'weak', score }
   } else if (score <= 6) {
-    return 'Medium'
+    return { label: 'medium', score }
   } else {
-    return 'Strong'
+    return { label: 'strong', score }
   }
 }

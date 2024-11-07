@@ -3,11 +3,10 @@ import { usePasswordContext } from '@/lib/utils'
 
 export default function PasswordOtpions() {
   const {
-    // setIsIncludeLowercase,
-    // setIsIncludeNumbers,
     handleToggleIncludeUppercase,
-    // setIsIncludeSymbols,
-    // setIsIncludeUppercase,
+    handleToggleIncludeLowercase,
+    handleToggleIncludeNumbers,
+    handleToggleIncludeSymbols,
   } = usePasswordContext()
 
   const passwordOptions = [
@@ -19,17 +18,17 @@ export default function PasswordOtpions() {
     {
       id: 'lowercaseLetters',
       label: 'Include Lowercase Letters',
-      // handleClick: setIsIncludeLowercase,
+      handleClick: handleToggleIncludeLowercase,
     },
     {
       id: 'numbers',
       label: 'Include Numbers',
-      // handleClick: setIsIncludeNumbers,
+      handleClick: handleToggleIncludeNumbers,
     },
     {
       id: 'symbols',
       label: 'Include Symbols',
-      // handleClick: setIsIncludeSymbols,
+      handleClick: handleToggleIncludeSymbols,
     },
   ]
 
