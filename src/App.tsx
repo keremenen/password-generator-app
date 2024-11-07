@@ -1,4 +1,5 @@
 import CopyIcon from './assets/icon-copy.svg?react'
+import Button from './components/button'
 import { Checkbox } from './components/ui/checkbox'
 import { Slider } from './components/ui/slider'
 
@@ -10,7 +11,7 @@ function App() {
       </h1>
 
       <div className='flex flex-col gap-6'>
-        <section className='flex items-center justify-between bg-dark-grey px-8 py-5'>
+        <section className='flex max-h-20 items-center justify-between bg-dark-grey px-8 py-5'>
           <h2 className='cursor-pointer text-heading-l opacity-25'>
             P4$5W0rD!
           </h2>
@@ -54,7 +55,7 @@ function App() {
 
           {/* STRENGTH INDICATOR */}
 
-          <div className='flex min-h-[72px] items-center justify-between bg-very-dark-grey px-8 py-5'>
+          <div className='mb-8 flex min-h-[72px] items-center justify-between bg-very-dark-grey px-8 py-5'>
             <p className='text-body text-grey'>STRENGTH</p>
 
             <div className='flex items-center gap-x-4'>
@@ -70,6 +71,7 @@ function App() {
           </div>
 
           {/* GENERATE BUTTON */}
+          <Button>Generate</Button>
         </section>
       </div>
     </main>
