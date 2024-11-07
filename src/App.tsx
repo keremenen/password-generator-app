@@ -1,6 +1,6 @@
-import CopyIcon from './assets/icon-copy.svg?react'
 import Button from './components/button'
 import Heading from './components/heading'
+import PasswordPreview from './components/password-preview'
 import { Checkbox } from './components/ui/checkbox'
 import { Slider } from './components/ui/slider'
 
@@ -10,13 +10,7 @@ function App() {
       <Heading>Password Generator</Heading>
 
       <div className='flex flex-col gap-y-4 md:gap-y-6'>
-        <section className='flex max-h-16 items-center justify-between bg-dark-grey px-4 py-5 md:max-h-20 md:px-8'>
-          <h2 className='cursor-pointer text-heading-m opacity-25 md:text-heading-l'>
-            P4$5W0rD!
-          </h2>
-          <CopyIcon />
-        </section>
-
+        <PasswordPreview />
         <section className='bg-dark-grey p-4 md:px-8 md:pb-8 md:pt-6'>
           <div className='mb-[7px] flex h-8 items-center justify-between md:mb-4 md:h-[43px]'>
             <h3>Character Length</h3>
