@@ -9,20 +9,13 @@ function App() {
   return (
     <main className='mx-auto flex w-full max-w-[540px] flex-col gap-y-4 md:gap-y-8'>
       <Heading>Password Generator</Heading>
-
       <div className='flex flex-col gap-y-4 md:gap-y-6'>
         <PasswordPreview />
         <section className='bg-dark-grey p-4 md:px-8 md:pb-8 md:pt-6'>
           <PasswordLength />
-          {/* INPUT SLIDER */}
-
-          {/* OPTIONS */}
           <PasswordOtpions />
-
-          {/* STRENGTH INDICATOR */}
           <PasswordStrength />
-          {/* GENERATE BUTTON */}
-          <Button>Generate</Button>
+          <Button arrowRight>Generate</Button>
         </section>
       </div>
     </main>
