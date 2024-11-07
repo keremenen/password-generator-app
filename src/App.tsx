@@ -1,14 +1,13 @@
 import CopyIcon from './assets/icon-copy.svg?react'
 import Button from './components/button'
+import Heading from './components/heading'
 import { Checkbox } from './components/ui/checkbox'
 import { Slider } from './components/ui/slider'
 
 function App() {
   return (
     <main className='mx-auto flex w-full max-w-[540px] flex-col gap-y-4 md:gap-y-8'>
-      <h1 className='text-body-sm text-center text-grey md:text-heading-m'>
-        Password Generator
-      </h1>
+      <Heading>Password Generator</Heading>
 
       <div className='flex flex-col gap-y-4 md:gap-y-6'>
         <section className='flex max-h-16 items-center justify-between bg-dark-grey px-4 py-5 md:max-h-20 md:px-8'>
