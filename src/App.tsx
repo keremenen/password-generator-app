@@ -1,8 +1,8 @@
 import Button from './components/button'
 import Heading from './components/heading'
 import PasswordLength from './components/password-length'
+import PasswordOtpions from './components/password-options'
 import PasswordPreview from './components/password-preview'
-import { Checkbox } from './components/ui/checkbox'
 
 function App() {
   return (
@@ -16,38 +16,7 @@ function App() {
           {/* INPUT SLIDER */}
 
           {/* OPTIONS */}
-          <ul className='mb-8 flex flex-col gap-y-4 md:gap-y-5'>
-            <li className='flex items-start'>
-              <Checkbox id='uppercaseLetters' />
-              <label
-                htmlFor='uppercaseLetters'
-                className='cursor-pointer pl-5 md:pl-6'
-              >
-                Include Uppercase Letters
-              </label>
-            </li>
-            <li className='flex items-start'>
-              <Checkbox id='lowercaseLetters' />
-              <label
-                htmlFor='lowercaseLetters'
-                className='cursor-pointer pl-5 md:pl-6'
-              >
-                Include Lowercase Letters
-              </label>
-            </li>
-            <li className='flex items-start'>
-              <Checkbox id='numbers' />
-              <label htmlFor='numbers' className='cursor-pointer pl-5 md:pl-6'>
-                Include Numbers
-              </label>
-            </li>
-            <li className='flex items-start'>
-              <Checkbox id='symbols' />
-              <label htmlFor='symbols' className='cursor-pointer pl-5 md:pl-6'>
-                Include Symbols
-              </label>
-            </li>
-          </ul>
+          <PasswordOtpions />
 
           {/* STRENGTH INDICATOR */}
 
