@@ -37,6 +37,12 @@ export default {
             lineHeight: '1.4375rem',
           },
         ],
+        'body-sm': [
+          '1 rem',
+          {
+            lineHeight: '1.3125rem',
+          },
+        ],
       },
     },
   },
