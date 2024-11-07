@@ -1,8 +1,8 @@
 import Button from './components/button'
 import Heading from './components/heading'
+import PasswordLength from './components/password-length'
 import PasswordPreview from './components/password-preview'
 import { Checkbox } from './components/ui/checkbox'
-import { Slider } from './components/ui/slider'
 
 function App() {
   return (
@@ -12,14 +12,9 @@ function App() {
       <div className='flex flex-col gap-y-4 md:gap-y-6'>
         <PasswordPreview />
         <section className='bg-dark-grey p-4 md:px-8 md:pb-8 md:pt-6'>
-          <div className='mb-[7px] flex h-8 items-center justify-between md:mb-4 md:h-[43px]'>
-            <h3>Character Length</h3>
-            <span className='text-heading-m text-neon-green md:text-heading-l'>
-              10
-            </span>
-          </div>
+          <PasswordLength />
           {/* INPUT SLIDER */}
-          <Slider defaultValue={[10]} max={20} step={1} className='mb-8 h-7' />
+
           {/* OPTIONS */}
           <ul className='mb-8 flex flex-col gap-y-4 md:gap-y-5'>
             <li className='flex items-start'>
