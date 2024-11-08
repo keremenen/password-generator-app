@@ -1,50 +1,81 @@
-# React + TypeScript + Vite
+# Frontend Mentor - Password generator app solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution to the [Password generator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-Currently, two official plugins are available:
+## Table of contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Password Strength Math Model](#password-strength-math-Model)
+  - [Built with](#built-with)
+- [Author](#author)
 
-## Expanding the ESLint configuration
+## Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### The challenge
 
-- Configure the top-level `parserOptions` property like this:
+Users should be able to:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Generate a password based on the selected inclusion options ✅
+- Copy the generated password to the computer's clipboard ✅
+- See a strength rating for their generated password ✅
+- View the optimal layout for the interface depending on their device's screen size ✅
+- See hover and focus states for all interactive elements on the page ✅
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Screenshot
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+![](./preview.jpg)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Links
+
+- Solution URL: [Solution URL](https://password-generator-app-kemer.netlify.app/)
+- Live Site URL: [Live Site URL](https://password-generator-app-kemer.netlify.app/)
+
+## My process
+
+### Password Strength Math Model
+
+To calculate password strength, I'm using a scoring system based on the length of the password and the inclusion of different character types (uppercase, lowercase, numbers, symbols). Here's a simple mathematical model to determine the password strength:
+
+Password Length: The longer the password, the stronger it is.
+Character Types: The more diverse the character types, the stronger the password.
+Here's a possible scoring system:
+
+#### Length Score:
+
+- 0-5 characters: 0 points
+- 6-10 characters: 1 point
+- 11-15 characters: 2 points
+- 16+ characters: 3 points
+
+#### Character Type Score:
+
+- Include uppercase letters: 1 point
+- Include lowercase letters: 1 point
+- Include numbers: 1 point
+- Include symbols: 2 points
+
+The total score will be the sum of the length score and the character type score. Based on the total score, you can define the strength levels:
+
+- Too Weak: 0-2 points
+- Weak: 3-4 points
+- Medium: 5-6 points
+- Strong: 7-8 points
+
+### Built with
+
+- Semantic HTML5 markup
+- Flexbox
+- Mobile-first workflow
+- [Vite](https://vite.dev/) - Frontend Tool
+- [Shadcn](https://ui.shadcn.com/) - UI Component Library
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+
+## Author
+
+- Website - [Add your name here](https://www.your-site.com)
+- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Twitter - [@yourusername](https://www.twitter.com/yourusername)
