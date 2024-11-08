@@ -1,0 +1,26 @@
+export const PASSWORD_LENGTH_SCORES = {
+  UNSET: 0,
+  TOO_WEAK: 0,
+  WEAK: 1,
+  MEDIUM: 2,
+  STRONG: 3,
+}
+
+export const CHARACTER_TYPE_SCORES = {
+  UPPERCASE: 1,
+  LOWERCASE: 1,
+  NUMBERS: 1,
+  SYMBOLS: 2,
+}
+
+export const PASSWORD_STRENGTH_THRESHOLDS = {
+  TOO_WEAK: 0,
+  WEAK: 4,
+  MEDIUM: 6,
+}
+
+export const PASSWORD_LENGTH_TRESHOLDS = {
+  STRONG: 16,
+  MEDIUM: 11,
+  WEAK: 6,
+}

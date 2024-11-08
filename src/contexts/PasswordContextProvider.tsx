@@ -1,3 +1,9 @@
+import {
+  CHARACTER_TYPE_SCORES,
+  PASSWORD_LENGTH_SCORES,
+  PASSWORD_LENGTH_TRESHOLDS,
+  PASSWORD_STRENGTH_THRESHOLDS,
+} from '@/lib/constants'
 import { createContext, useMemo, useState } from 'react'
 
 type PasswordContextType = {
@@ -13,6 +19,7 @@ type PasswordContextType = {
   handleToggleIncludeNumbers: () => void
   handleToggleIncludeSymbols: () => void
   handleGeneratePassword: () => void
+  isAnyOptionToggled: boolean
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -23,10 +30,8 @@ export default function PasswordContextProvider({
 }: {
   children: React.ReactNode
 }) {
-  // GENERATED PASSWORD
+  // PASSWORD
   const [generatedPassword, setGeneratedPassword] = useState('')
-
-  // PASSWORD LENGTH
   const [passwordLength, setPasswordLength] = useState(0)
 
   // OPTIONS
@@ -52,6 +57,7 @@ export default function PasswordContextProvider({
     isIncludeSymbols,
   ])
 
+  // HANDLERS
   const handleToggleIncludeUppercase = () => {
     setIsIncludeUppercase((prevState) => !prevState)
   }
@@ -66,7 +72,6 @@ export default function PasswordContextProvider({
   }
 
   const handleGeneratePassword = () => {
-    // Generate password
     if (
       !isIncludeUppercase &&
       !isIncludeLowercase &&
@@ -88,6 +93,12 @@ export default function PasswordContextProvider({
     if (isIncludeNumbers) characterPool += numberChars
     if (isIncludeSymbols) characterPool += symbolChars
 
+    // Shuffle character pool
+    characterPool = characterPool
+      .split('')
+      .sort(() => 0.5 - Math.random())
+      .join('')
+
     let generatedPassword = ''
 
     for (let i = 0; i < passwordLength; i++) {
@@ -98,11 +109,19 @@ export default function PasswordContextProvider({
     setGeneratedPassword(generatedPassword) // Replace this with your desired action
   }
 
+  // CHECK IF ANY OPTIONS IS TOGGLED
+  const isAnyOptionToggled =
+    isIncludeUppercase ||
+    isIncludeLowercase ||
+    isIncludeNumbers ||
+    isIncludeSymbols
+
   return (
     <PasswordContext.Provider
       value={{
         passwordLength,
         generatedPassword,
+        isAnyOptionToggled,
         setPasswordLength,
         handleToggleIncludeUppercase,
         handleToggleIncludeLowercase,
@@ -115,27 +134,6 @@ export default function PasswordContextProvider({
       {children}
     </PasswordContext.Provider>
   )
-}
-
-const PASSWORD_LENGTH_SCORES = {
-  UNSET: 0,
-  TOO_WEAK: 0,
-  WEAK: 1,
-  MEDIUM: 2,
-  STRONG: 3,
-}
-
-const CHARACTER_TYPE_SCORES = {
-  UPPERCASE: 1,
-  LOWERCASE: 1,
-  NUMBERS: 1,
-  SYMBOLS: 2,
-}
-
-const PASSWORD_STRENGTH_THRESHOLDS = {
-  TOO_WEAK: 0,
-  WEAK: 4,
-  MEDIUM: 6,
 }
 
 function calculatePasswordStrength(
@@ -157,11 +155,11 @@ function calculatePasswordStrength(
     return { label: 'too weak', score: PASSWORD_LENGTH_SCORES.TOO_WEAK }
   }
 
-  if (length >= 16) {
+  if (length >= PASSWORD_LENGTH_TRESHOLDS.STRONG) {
     score += PASSWORD_LENGTH_SCORES.STRONG
-  } else if (length >= 11) {
+  } else if (length >= PASSWORD_LENGTH_TRESHOLDS.MEDIUM) {
     score += PASSWORD_LENGTH_SCORES.MEDIUM
-  } else if (length >= 6) {
+  } else if (length >= PASSWORD_LENGTH_TRESHOLDS.WEAK) {
     score += PASSWORD_LENGTH_SCORES.WEAK
   }
 
