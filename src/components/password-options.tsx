@@ -35,9 +35,13 @@ export default function PasswordOtpions() {
   return (
     <ul className='mb-8 flex flex-col gap-y-4 md:gap-y-5'>
       {passwordOptions.map(({ id, label, handleClick }) => (
-        <li key={id} className='flex items-start' onClick={handleClick}>
+        <li key={id} className='flex items-start'>
           <Checkbox id={id} onClick={(e) => e.stopPropagation()} />
-          <label htmlFor={id} className='cursor-pointer pl-5 md:pl-6'>
+          <label
+            onClick={handleClick}
+            htmlFor={id}
+            className='cursor-pointer pl-5 md:pl-6'
+          >
             {label}
           </label>
         </li>
