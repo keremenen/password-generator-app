@@ -71,7 +71,7 @@ function StrengthLevelBar({ color, isFilled }: StrengthLevelBarsProps) {
   return (
     <span
       className={cn(
-        `bg-r block h-7 min-w-[0.625rem] border-2`,
+        `bg-r block h-7 min-w-[0.625rem] border-2 transition-colors duration-500`,
         color && isFilled && `${color.background} ${color.border}`
       )}
     />
