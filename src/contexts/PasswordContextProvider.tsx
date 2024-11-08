@@ -2,6 +2,7 @@ import { createContext, useMemo, useState } from 'react'
 
 type PasswordContextType = {
   passwordLength: number
+  generatedPassword: string
   passwordStrength: {
     label: 'unset' | 'too weak' | 'weak' | 'medium' | 'strong'
     score: number
@@ -22,6 +23,9 @@ export default function PasswordContextProvider({
 }: {
   children: React.ReactNode
 }) {
+  // GENERATED PASSWORD
+  const [generatedPassword, setGeneratedPassword] = useState('')
+
   // PASSWORD LENGTH
   const [passwordLength, setPasswordLength] = useState(0)
 
@@ -91,13 +95,14 @@ export default function PasswordContextProvider({
       generatedPassword += characterPool[randomIndex]
     }
 
-    console.log(generatedPassword) // Replace this with your desired action
+    setGeneratedPassword(generatedPassword) // Replace this with your desired action
   }
 
   return (
     <PasswordContext.Provider
       value={{
         passwordLength,
+        generatedPassword,
         setPasswordLength,
         handleToggleIncludeUppercase,
         handleToggleIncludeLowercase,

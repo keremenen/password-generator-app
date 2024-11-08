@@ -1,7 +1,7 @@
 import ArrowRightIcon from '@/assets/icon-arrow-right.svg?react'
 import { usePasswordContext } from '@/lib/utils'
 
-export default function Button() {
+export default function GenerateButton() {
   const { handleGeneratePassword } = usePasswordContext()
 
   return (
