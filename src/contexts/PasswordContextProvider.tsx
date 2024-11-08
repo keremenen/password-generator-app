@@ -115,6 +115,9 @@ function calculatePasswordStrength(
   if (length === 0) {
     return { label: 'unset', score: PASSWORD_LENGTH_SCORES.UNSET }
   }
+  if (length < 6) {
+    return { label: 'too weak', score: PASSWORD_LENGTH_SCORES.TOO_WEAK }
+  }
 
   if (length >= 16) {
     score += PASSWORD_LENGTH_SCORES.STRONG

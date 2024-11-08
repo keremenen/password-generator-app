@@ -1,4 +1,4 @@
-import { usePasswordContext } from '@/lib/utils'
+import { cn, usePasswordContext } from '@/lib/utils'
 
 export default function PasswordStrength() {
   const { passwordStrength } = usePasswordContext()
@@ -9,7 +9,6 @@ export default function PasswordStrength() {
 
       <div className='flex items-center gap-x-4'>
         <p className='text-body uppercase md:text-heading-m'>
-          {/* {passwordLength === 0 ? '' : passwordStrength.label} */}
           {passwordStrength.label === 'unset' ? '' : passwordStrength.label}
         </p>
         <PasswordStrengthBars />
@@ -19,80 +18,62 @@ export default function PasswordStrength() {
 }
 
 function PasswordStrengthBars() {
-  const { passwordStrength } = usePasswordContext()
-  const strengthColors = {
-    0: 'red',
-    1: 'orange',
-    2: 'yellow',
-    3: 'neon-green',
+  const {
+    passwordStrength: { label },
+  } = usePasswordContext()
+
+  const strengthColors = [
+    {
+      background: 'bg-red',
+      border: 'border-red',
+    },
+    {
+      background: 'bg-orange',
+      border: 'border-orange',
+    },
+    {
+      background: 'bg-yellow',
+      border: 'border-yellow',
+    },
+    {
+      background: 'bg-neon-green',
+      border: 'border-neon-green',
+    },
+  ]
+
+  const getBars = (filledCount: number, colorIndex: number) => {
+    return Array.from({ length: 4 }, (_, index) => (
+      <StrengthLevelBar
+        key={index}
+        isFilled={index < filledCount}
+        color={index < filledCount ? strengthColors[colorIndex] : undefined}
+      />
+    ))
   }
 
-  return (
-    <div className='flex gap-x-2'>
-      <StrengthLevelBar
-        color={
-          strengthColors[passwordStrength.score as keyof typeof strengthColors]
-        }
-        isFilled={passwordStrength.score >= 0}
-      />
-      <StrengthLevelBar
-        color={
-          strengthColors[passwordStrength.score as keyof typeof strengthColors]
-        }
-        isFilled={passwordStrength.score >= 4}
-      />
-      <StrengthLevelBar
-        color={
-          strengthColors[passwordStrength.score as keyof typeof strengthColors]
-        }
-        isFilled={passwordStrength.score >= 6}
-      />
-      {/* <StrengthLevelBar
-        color={
-          strengthColors[passwordStrength.score as keyof typeof strengthColors]
-        }
-        isFilled={passwordStrength.score >= 3}
-      /> */}
+  const strengthMap = {
+    unset: getBars(0, 0),
+    'too weak': getBars(1, 0),
+    weak: getBars(2, 1),
+    medium: getBars(3, 2),
+    strong: getBars(4, 3),
+  }
 
-      {/* <StrengthLevelBar
-        color={strengthColors[passwordStrength.score]}
-        isFilled={passwordStrength.score >= 4}
-      />
-      <StrengthLevelBar
-        color={strengthColors[passwordStrength.score]}
-        isFilled={passwordStrength.score >= 6}
-      /> */}
-      {/* <StrengthLevelBars
-        color={strengthColors[strength.score]}
-        isFilled={strength === 'too weak'}
-      />
-      <StrengthLevelBars
-        color={strengthColors[strength.score]}
-        isFilled={strength === 'weak'}
-      />
-      <StrengthLevelBars
-        color={strengthColors[strength.score]}
-        isFilled={strength === 'medium'}
-      />
-      <StrengthLevelBars
-        color={strengthColors[strength.score]}
-        isFilled={strength === 'strong'}
-      /> */}
-    </div>
-  )
+  return <div className='flex gap-x-2'>{strengthMap[label]}</div>
 }
 
 type StrengthLevelBarsProps = {
-  color: string
-  isFilled: boolean
+  color?: { background: string; border: string }
+  isFilled?: boolean
 }
 
 function StrengthLevelBar({ color, isFilled }: StrengthLevelBarsProps) {
   return (
     <span
-      className={`block h-7 min-w-[0.625rem] border-2 border-${color} ${
-        isFilled ? `bg-${color}` : ''
-      }`}
+      className={cn(
+        `bg-r block h-7 min-w-[0.625rem] border-2`,
+        color && isFilled && `${color.background} ${color.border}`
+      )}
     />
   )
 }
