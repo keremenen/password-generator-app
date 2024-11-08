@@ -79,6 +79,27 @@ export default function PasswordContextProvider({
   )
 }
 
+const PASSWORD_LENGTH_SCORES = {
+  UNSET: 0,
+  TOO_WEAK: 0,
+  WEAK: 1,
+  MEDIUM: 2,
+  STRONG: 3,
+}
+
+const CHARACTER_TYPE_SCORES = {
+  UPPERCASE: 1,
+  LOWERCASE: 1,
+  NUMBERS: 1,
+  SYMBOLS: 2,
+}
+
+const PASSWORD_STRENGTH_THRESHOLDS = {
+  TOO_WEAK: 0,
+  WEAK: 4,
+  MEDIUM: 6,
+}
+
 function calculatePasswordStrength(
   length: number,
   isIncludeUppercase: boolean,
@@ -92,29 +113,29 @@ function calculatePasswordStrength(
   let score = 0
 
   if (length === 0) {
-    return { label: 'unset', score }
+    return { label: 'unset', score: PASSWORD_LENGTH_SCORES.UNSET }
   }
 
   if (length >= 16) {
-    score += 3
+    score += PASSWORD_LENGTH_SCORES.STRONG
   } else if (length >= 11) {
-    score += 2
+    score += PASSWORD_LENGTH_SCORES.MEDIUM
   } else if (length >= 6) {
-    score += 1
+    score += PASSWORD_LENGTH_SCORES.WEAK
   }
 
   // Character type score
-  if (isIncludeUppercase) score += 1
-  if (isIncludeLowercase) score += 1
-  if (isIncludeNumbers) score += 1
-  if (isIncludeSymbols) score += 1
+  if (isIncludeUppercase) score += CHARACTER_TYPE_SCORES.UPPERCASE
+  if (isIncludeLowercase) score += CHARACTER_TYPE_SCORES.LOWERCASE
+  if (isIncludeNumbers) score += CHARACTER_TYPE_SCORES.NUMBERS
+  if (isIncludeSymbols) score += CHARACTER_TYPE_SCORES.SYMBOLS
 
   // Determine strength
-  if (score == 0) {
+  if (score == PASSWORD_LENGTH_SCORES.TOO_WEAK) {
     return { label: 'too weak', score }
-  } else if (score <= 4) {
+  } else if (score <= PASSWORD_STRENGTH_THRESHOLDS.WEAK) {
     return { label: 'weak', score }
-  } else if (score <= 6) {
+  } else if (score <= PASSWORD_STRENGTH_THRESHOLDS.MEDIUM) {
     return { label: 'medium', score }
   } else {
     return { label: 'strong', score }
