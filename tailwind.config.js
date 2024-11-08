@@ -16,6 +16,9 @@ export default {
         orange: '#FB7C58',
         red: '#F64A4A',
       },
+      backgroundImage: {
+        primary: 'linear-gradient(90deg, #14131B 0%, #08070B 100%)',
+      },
       fontSize: {
         'heading-l': [
           '2rem',
