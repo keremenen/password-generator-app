@@ -23,8 +23,8 @@ export default function PasswordPreview() {
 
   return (
     <section className='flex max-h-16 items-center justify-between bg-dark-grey px-4 py-5 md:max-h-20 md:px-8'>
-      <h2 className='text-heading-m opacity-25 md:text-heading-l'>
-        {generatedPassword || 'P4$5W0rD!'}
+      <h2 className='text-heading-m md:text-heading-l'>
+        {generatedPassword || <span className='opacity-25'>P4$5W0rD!</span>}
       </h2>
       <div className='relative flex gap-x-4 text-neon-green'>
         {isCopySuccessFull && <p className='absolute right-10'>COPIED</p>}
