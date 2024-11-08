@@ -20,6 +20,10 @@ type PasswordContextType = {
   handleToggleIncludeSymbols: () => void
   handleGeneratePassword: () => void
   isAnyOptionToggled: boolean
+  isIncludeUppercase: boolean
+  isIncludeLowercase: boolean
+  isIncludeNumbers: boolean
+  isIncludeSymbols: boolean
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -127,8 +131,12 @@ export default function PasswordContextProvider({
         handleToggleIncludeLowercase,
         handleToggleIncludeNumbers,
         handleToggleIncludeSymbols,
-        passwordStrength,
         handleGeneratePassword,
+        passwordStrength,
+        isIncludeUppercase,
+        isIncludeLowercase,
+        isIncludeNumbers,
+        isIncludeSymbols,
       }}
     >
       {children}
