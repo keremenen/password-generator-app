@@ -18,3 +18,13 @@ export function usePasswordContext() {
 
   return context
 }
+
+export const copyToClipboard = (stringToCopy: string) => {
+  if (stringToCopy === '') return
+
+  try {
+    navigator.clipboard.writeText(stringToCopy)
+  } catch (error) {
+    console.error('Failed to copy: ', error)
+  }
+}

@@ -1,24 +1,10 @@
 import CopyIcon from '@/assets/icon-copy.svg?react'
-import { cn, usePasswordContext } from '@/lib/utils'
+import { cn, copyToClipboard, usePasswordContext } from '@/lib/utils'
 import { useState } from 'react'
 
 export default function PasswordPreview() {
   const { generatedPassword } = usePasswordContext()
   const [isCopySuccessFull, setIsCopySuccessFull] = useState(false)
-
-  const handleCopyToClipboard = () => {
-    if (generatedPassword === '') return
-
-    try {
-      navigator.clipboard.writeText(generatedPassword)
-    } catch (error) {
-      console.error('Failed to copy: ', error)
-    }
-    setIsCopySuccessFull(true)
-    setTimeout(() => {
-      setIsCopySuccessFull(false)
-    }, 2000)
-  }
 
   return (
     <section className='flex max-h-16 items-center justify-between bg-dark-grey px-4 py-5 md:max-h-20 md:px-8'>
@@ -28,9 +14,16 @@ export default function PasswordPreview() {
       <div className='relative flex gap-x-4 text-neon-green'>
         {isCopySuccessFull && <p className='absolute right-10'>COPIED</p>}
         <CopyIcon
-          onClick={handleCopyToClipboard}
+          onClick={() => {
+            if (generatedPassword === '') return
+            copyToClipboard(generatedPassword)
+            setIsCopySuccessFull(true)
+            setTimeout(() => {
+              setIsCopySuccessFull(false)
+            }, 2000)
+          }}
           className={cn(
-            `cursor-pointer text-neon-green transition duration-200 hover:text-white`,
+            `disa cursor-pointer text-neon-green transition duration-200 hover:text-white`,
             {
               'cursor-not-allowed opacity-25 hover:text-neon-green':
                 generatedPassword === '',
