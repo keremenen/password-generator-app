@@ -11,6 +11,7 @@ type PasswordContextType = {
   handleToggleIncludeLowercase: () => void
   handleToggleIncludeNumbers: () => void
   handleToggleIncludeSymbols: () => void
+  handleGeneratePassword: () => void
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -60,7 +61,38 @@ export default function PasswordContextProvider({
     setIsIncludeSymbols((prevState) => !prevState)
   }
 
-  console.log(passwordStrength)
+  const handleGeneratePassword = () => {
+    // Generate password
+    if (
+      !isIncludeUppercase &&
+      !isIncludeLowercase &&
+      !isIncludeNumbers &&
+      !isIncludeSymbols
+    ) {
+      return
+    }
+
+    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz'
+    const numberChars = '0123456789'
+    const symbolChars = '!@#$%^&*'
+
+    let characterPool = ''
+
+    if (isIncludeUppercase) characterPool += uppercaseChars
+    if (isIncludeLowercase) characterPool += lowercaseChars
+    if (isIncludeNumbers) characterPool += numberChars
+    if (isIncludeSymbols) characterPool += symbolChars
+
+    let generatedPassword = ''
+
+    for (let i = 0; i < passwordLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characterPool.length)
+      generatedPassword += characterPool[randomIndex]
+    }
+
+    console.log(generatedPassword) // Replace this with your desired action
+  }
 
   return (
     <PasswordContext.Provider
@@ -72,6 +104,7 @@ export default function PasswordContextProvider({
         handleToggleIncludeNumbers,
         handleToggleIncludeSymbols,
         passwordStrength,
+        handleGeneratePassword,
       }}
     >
       {children}

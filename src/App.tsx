@@ -1,4 +1,4 @@
-import Button from './components/button'
+import GenerateButton from './components/generate-button'
 import Heading from './components/heading'
 import PasswordLength from './components/password-length'
 import PasswordOtpions from './components/password-options'
@@ -17,7 +17,7 @@ function App() {
             <PasswordLength />
             <PasswordOtpions />
             <PasswordStrength />
-            <Button arrowRight>Generate</Button>
+            <GenerateButton />
           </section>
         </PasswordContextProvider>
       </div>
