@@ -76,6 +76,4 @@ The total score will be the sum of the length score and the character type score
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Frontend Mentor - [@keremenen](https://www.frontendmentor.io/profile/keremenen)
