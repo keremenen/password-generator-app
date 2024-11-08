@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution URL](https://password-generator-app-kemer.netlify.app/)
+- Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/password-generator-app-yD8l_YjHT_)
 - Live Site URL: [Live Site URL](https://password-generator-app-kemer.netlify.app/)
 
 ## My process
